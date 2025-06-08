@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Blog Tejtexa</title>
+  
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <h1>🧠 Blog Tejtexa</h1>
+  <ul id="posts"></ul>
+
+  <script>
+    const posts = [
+      { title: "Pierwszy Post", file: "pierwszy-post.md" },
+      // Dodawaj więcej tu
+    ];
+
+    const list = document.getElementById('posts');
+    posts.forEach(post => {
+      const li = document.createElement('li');
+      li.innerHTML = `<a href="post.html?file=${post.file}">${post.title}</a>`;
+      list.appendChild(li);
+    });
+  </script>
+</body>
+</html>
