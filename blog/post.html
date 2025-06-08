@@ -18,16 +18,24 @@
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const file = urlParams.get('file');
-    
-    fetch(`posts/${file}`)
-      .then(res => res.text())
-      .then(md => {
-        document.getElementById('content').innerHTML = marked.parse(md);
-      })
-      .catch(err => {
-        document.getElementById('content').innerHTML = `Didn't find a post withe the name ${urlParams}`;
-      });
+const file = urlParams.get('file');
+
+if (!file || file.trim() === '') {
+  document.getElementById('content').innerHTML = '<p>Brak podanego pliku do wyświetlenia. Spierdalaj i podaj poprawną nazwę!</p>';
+} else {
+  fetch(`posts/${file}`)
+    .then(res => {
+      if (!res.ok) throw new Error('Nie znaleziono pliku!');
+      return res.text();
+    })
+    .then(md => {
+      document.getElementById('content').innerHTML = marked.parse(md);
+    })
+    .catch(err => {
+      document.getElementById('content').innerHTML = `<p>Błąd: ${err.message}</p>`;
+    });
+}
+
   </script>
 </body>
 </html>
