@@ -19,15 +19,17 @@ nav {
   text-align: center;
 }
 
-nav a {
+a {
   color: #eee;
   text-decoration: none;
   margin: 0 1rem;
 }
 
-nav a:hover {
+a:hover {
   text-decoration: underline;
 }
+
+
 
 
 .embed {
