@@ -14,7 +14,7 @@
     <a href="../exploits.html">Exploits</a>
     <a href="blog/index.html">Blog</a>
   </nav>
-  <div id="content" class="container">Wczytywanie...</div>
+  <div id="content" class="container">Loading...</div>
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
@@ -26,7 +26,7 @@
         document.getElementById('content').innerHTML = marked.parse(md);
       })
       .catch(err => {
-        document.getElementById('content').innerHTML = "Nie znaleziono posta 😡";
+        document.getElementById('content').innerHTML = `Didn't find a post withe the name ${urlParams}`;
       });
   </script>
 </body>
