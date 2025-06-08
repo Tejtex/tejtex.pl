@@ -21,18 +21,18 @@
 const file = urlParams.get('file');
 
 if (!file || file.trim() === '') {
-  document.getElementById('content').innerHTML = '<p>Brak podanego pliku do wyświetlenia. Spierdalaj i podaj poprawną nazwę!</p>';
+  document.getElementById('content').innerHTML = '<p>No file was specified.</p>';
 } else {
   fetch(`posts/${file}`)
     .then(res => {
-      if (!res.ok) throw new Error('Nie znaleziono pliku!');
+      if (!res.ok) throw new Error('Didnt find the file');
       return res.text();
     })
     .then(md => {
       document.getElementById('content').innerHTML = marked.parse(md);
     })
     .catch(err => {
-      document.getElementById('content').innerHTML = `<p>Błąd: ${err.message}</p>`;
+      document.getElementById('content').innerHTML = `<p>Error: ${err.message}</p>`;
     });
 }
 
