@@ -1,0 +1,104 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+:root {
+      --bg: #0c0c0c;
+      --text: #e0e0e0;
+      --muted: #555;
+      --mint: #7fffd4;
+      --mono: 'Space Mono', monospace;
+      --sans: 'DM Sans', sans-serif;
+}
+ 
+html { scroll-snap-type: y mandatory; overflow-y: scroll;  scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); }
+ 
+.pfp {
+    height: 88px;
+    width: 88px;
+    border-radius: 50%;
+    background: var(--mint);
+    flex-shrink: 0;
+    margin-bottom: 10px;
+}
+
+.hero {
+      height: 100svh;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 24px;
+      position: relative;
+}
+.handle {
+      font-family: var(--mono);
+      font-size: clamp(28px, 6vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+.tagline {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+.tagline span {
+    color: var(--mint);
+}
+
+.scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: bob 2s ease-in-out infinite;
+    }
+ 
+    .scroll-hint::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+    }
+ 
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(6px); }
+    }
+.pfp, .handle, .tagline, .links{
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.handle    { animation-delay: 0.1s; }
+.tagline   { animation-delay: 0.2s; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.links {
+  display: flex;
+  gap: 24px;
+  margin-top: 20px;
+  animation-delay: 0.3s;
+}
+
+.links a {
+  color: var(--muted);
+  font-size: 20px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.links a:hover { color: var(--mint); }
